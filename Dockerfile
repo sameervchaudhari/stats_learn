@@ -11,8 +11,9 @@ ENV VIRTUAL_ENV=/home/appuser/venv
 RUN python -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-# Copy only main.py and the src folder from the current directory
+# Copy only main.py, requirements.txt, and the src folder from the current directory
 COPY --chown=appuser:appuser main.py ./main.py
+COPY --chown=appuser:appuser requirements.txt ./requirements.txt
 COPY --chown=appuser:appuser src ./src
 
 # Install any needed packages specified in requirements.txt
