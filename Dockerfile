@@ -11,8 +11,9 @@ ENV VIRTUAL_ENV=/home/appuser/venv
 RUN python -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-# Copy the current directory contents into the container
-COPY --chown=appuser:appuser . .
+# Copy only main.py and the src folder from the current directory
+COPY --chown=appuser:appuser main.py ./main.py
+COPY --chown=appuser:appuser src ./src
 
 # Install any needed packages specified in requirements.txt
 # Ensure that we use pip and python from the virtual environment
@@ -22,4 +23,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 80
 
 # Run the app
-CMD ["python", "app.py"]
+CMD ["python", "main.py"]
