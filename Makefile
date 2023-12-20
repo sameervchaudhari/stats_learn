@@ -44,6 +44,11 @@ clean:
 	find . -type d -name '__pycache__' -delete
 	rm -rf .pytest_cache $(VENV)
 
+commit:
+	git add .
+	git commit -m "Committing changes"
+	git push origin main
+
 # Build Docker image
 docker-build:
 	$(DOCKER) build -t $(DOCKER_TAG) -f $(DOCKERFILE) .
